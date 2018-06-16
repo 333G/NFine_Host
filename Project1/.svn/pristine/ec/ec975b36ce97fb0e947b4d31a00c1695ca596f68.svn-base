@@ -1,0 +1,94 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Mysoft.Task.TaskSet
+{
+    [DisallowConcurrentExecution]
+    class ReviewSms : IJob
+    {
+        private static string connStr = SysConfig.SqlConnect;
+        public void Execute(IJobExecutionContext context)
+        {
+            try
+            {
+                //获取任务执行参数,任务启动时会读取配置文件TaskConfig.xml节点TaskParam的值传递过来
+                //object objParam = context.JobDetail.JobDataMap.Get("TaskParam");
+                List<SMC_SendSms> sendsms = GetSMCSendSmsList();
+                int listcount = sendsms.Count();
+                LogHelper.WriteLog("短信审核测试,当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"+"取得"+ listcount + "条符合条件数据"));
+            }
+            catch (Exception ex)
+            {
+                JobExecutionException e2 = new JobExecutionException(ex);
+                LogHelper.WriteLog("测试任务异常", ex);
+                //1.立即重新执行任务 
+                e2.RefireImmediately = true;
+                //2 立即停止所有相关这个任务的触发器
+                //e2.UnscheduleAllTriggers=true; 
+            }
+        }
+
+        //1、关键字校验
+        private string KeyCheck(string sms_content)
+        {
+            List<Sev_SendDateDetail> list_Sev_SendDateDetail = new List<Sev_SendDateDetail>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                string sql = "select F_Id,F_SensitiveWords from SendDateDetail";
+                list_Sev_SendDateDetail = db.SqlQuery<Sev_SendDateDetail>(sql);
+            }
+            if (list_Sev_SendDateDetail.Count() > 0)
+            {
+                foreach (var model in list_Sev_SendDateDetail)
+                {
+                    string strmodel = model.ToString();
+                    int modelnum = strmodel.Length;
+                    string strstar = "";
+                    for (int i = 0; i < modelnum; i++) {
+                        strstar += "*";
+                    }
+                    sms_content.Replace(strmodel, strstar);
+                }
+            }
+            return sms_content;
+        }
+
+        //自动免审模板
+        private bool AutoExamineTmpl(string content)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// 人工免审模板，正则表达式匹配
+        /// 快速验证一个字符串是否符合指定的正则表达式。
+        /// </summary>
+        /// <param name="express">正则表达式的内容。</param>
+        /// <param name="content">需验证的字符串。</param>
+        /// <returns>是否合法的bool值。</returns>
+        private bool ManualExamineTmpl(string express, string content)
+        {
+            bool checkRegex = RegexHelper.CheckRegex(express, content);
+            return checkRegex;
+        }
+
+        //取得发送表数据，未审核，未发送
+        private List<SMC_SendSms> GetSMCSendSmsList()
+        {
+            List<SMC_SendSms> list_smc_sendsms = new List<SMC_SendSms>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                string sql = "select F_Id,F_MobileList,F_CreatorUserId from SMC_SendSms a left join OC_UserInfo"
+                    + " where F_DealState=0 and F_SendState=0";
+                list_smc_sendsms = db.SqlQuery<SMC_SendSms>(sql);
+            }
+            return list_smc_sendsms;
+        }
+    }
+}

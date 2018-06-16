@@ -1,0 +1,5 @@
+E:\17_3_30\Project1\MyDocument\bin\Debug\MyDocument.dll
+E:\17_3_30\Project1\MyDocument\bin\Debug\MyDocument.pdb
+E:\17_3_30\Project1\MyDocument\obj\Debug\MyDocument.csprojResolveAssemblyReference.cache
+E:\17_3_30\Project1\MyDocument\obj\Debug\MyDocument.dll
+E:\17_3_30\Project1\MyDocument\obj\Debug\MyDocument.pdb

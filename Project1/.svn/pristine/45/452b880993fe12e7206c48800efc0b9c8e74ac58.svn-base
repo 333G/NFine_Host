@@ -1,0 +1,272 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using ToolGood.Words;
+
+namespace Mysoft.Task.TaskSet
+{
+    /// <summary>
+    /// 测试任务
+    /// </summary>
+    ///<remarks>DisallowConcurrentExecution属性标记任务不可并行，要是上一任务没运行完即使到了运行时间也不会运行</remarks>
+    [DisallowConcurrentExecution]
+    public class SendSmsJob : IJob
+    {
+        private static string connStr = SysConfig.SqlConnect;
+        public void Execute(IJobExecutionContext context)
+        {
+            try
+            {
+                int listcount = StartJob();
+                LogHelper.WriteLog("短信发送测试,当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss" + "操作了" + listcount + "条符合条件数据"));
+            }
+            catch (Exception ex)
+            {
+                JobExecutionException e2 = new JobExecutionException(ex);
+                LogHelper.WriteLog("任务异常", ex);
+                //1.立即重新执行任务 
+                e2.RefireImmediately = true;
+                //2 立即停止所有相关这个任务的触发器
+                //e2.UnscheduleAllTriggers=true; 
+            }
+        }
+
+          //线程方式，返回详单的实体，即拆号码（F_MobileList）
+          private List<Sev_SendDateDetail> GetSevSendDateDetailParallel(List<SMC_SendSms> list1)
+          {
+              List<Sev_SendDateDetail> list_sev_sdd = new List<Sev_SendDateDetail>();//返回待发送数据的记录   
+              Parallel.ForEach(list1, item =>
+              {
+                  if (item.F_MobileList != null)
+                  {
+                      Sev_SendDateDetail ssdd = new Sev_SendDateDetail();//生成实体对象
+                      ssdd.F_RootId = item.F_RootId;
+                      ssdd.F_UserId = item.F_CreatorUserId;
+                      ssdd.F_SendId = item.F_Id;
+                      string[] mobilelist = item.F_MobileList.Split(',');
+                      for (int i = 0; i < mobilelist.Count(); i++)
+                      {
+                          ssdd.F_PhoneCode = mobilelist[i].Replace("\t", "");
+                          list_sev_sdd.Add(ssdd);
+                      }
+                  }
+              });
+            list_sev_sdd = BlackCheckednumParallel(list_sev_sdd);//线程判断黑名单，返回符合的list。
+            //list_sev_sdd = BlackCheckednum(list_sev_sdd);//非线程判断黑名单，返回符合的list.
+            return list_sev_sdd;
+        }
+
+        //非线程方式，返回详单的实体，拆号码（F_MobileList）
+        private List<Sev_SendDateDetail> GetSevSendDateDetail(List<SMC_SendSms> list1)
+          {
+              List<Sev_SendDateDetail> list_sev_sdd = new List<Sev_SendDateDetail>();           
+              foreach (var item in list1)
+              {
+                  if (item.F_MobileList != null)
+                  {
+                      Sev_SendDateDetail ssdd = new Sev_SendDateDetail();//生成实体对象
+                      ssdd.F_RootId = item.F_RootId;
+                      ssdd.F_UserId = item.F_CreatorUserId;
+                      ssdd.F_SendId = item.F_Id;
+                      string[] mobilelist = item.F_MobileList.Split(',');
+                      for (int i = 0; i < mobilelist.Count(); i++)
+                      {
+                          ssdd.F_PhoneCode = mobilelist[i].Replace("\t", "");
+                          list_sev_sdd.Add(ssdd);
+                      }
+                  }
+              }
+            list_sev_sdd= BlackCheckednumParallel(list_sev_sdd);//线程判断黑名单，返回符合的list。
+            //list_sev_sdd = BlackCheckednum(list_sev_sdd);//非线程判断黑名单，返回符合的list.
+            return list_sev_sdd;
+          }
+
+        //线程方式进行黑名单判断，返回SendData的List<>.，为发送做最后的准备。
+        private List<Sev_SendDateDetail> BlackCheckednumParallel(List<Sev_SendDateDetail> senddatalist)
+        {
+            List<Models.TXL_BlackList> blacklist = GetBlackList();
+            Parallel.ForEach(senddatalist, item =>
+            {
+                foreach (var num in blacklist)
+                {
+                    if (item.F_PhoneCode == num.Mobile)//如果联系电话在黑名单中，移除行
+                    {
+                        senddatalist.Remove(item);
+                        break;
+                    }
+                }
+            });
+            return senddatalist;
+        }
+
+        //非线程方式进行黑名单判断,获取可以发送的smslist，返回SendData的List<>.，为发送做最后的准备。
+        private List<Sev_SendDateDetail> BlackCheckednum(List<Sev_SendDateDetail> senddatalist)
+        {
+            List<Models.TXL_BlackList> blacklist = GetBlackList();
+            foreach(var item in senddatalist)
+            {
+                    foreach (var num in blacklist)
+                    {
+                        if (item.F_PhoneCode == num.Mobile)//如果联系电话在黑名单中，移除行
+                        {
+                            senddatalist.Remove(item);
+                            break;
+                        }
+                    }
+            }
+            return senddatalist;
+        }
+
+
+        //拆分长短信
+        private string[] SplitLongSmsContent(string Content ,string F_Id) {
+
+            string[] ContentArr=null;
+                if (Content.Length > 90)
+                {
+                    int Count =0;
+                    for (int n = 90; n < Content.Length; n = n + 90)//假定一条短信90字
+                    {
+                        //如何拆短信？
+                        ContentArr[Count] = Content.Substring(Count * 90, 90);
+                        Count++;
+                    }
+                }        
+            return ContentArr;
+        }
+
+        //修改发送状态
+        private void ChangeSendState(List<SMC_SendSms> list)
+        {
+            Parallel.ForEach(list, item =>
+             {
+                 ChangeSendStateDone(item.F_Id);
+                 ChangeOperateState(item.F_Id);//修改状态为已处理  
+             });
+        }
+
+        //短信内容敏感词处理,线程方法
+        private void DirtyWordRemove(List<SMC_SendSms> contentlist)
+        {
+            string SensitiveStr = GetSensitiveWords();
+            Parallel.ForEach(contentlist, item =>
+            {
+                string content = item.F_SmsContent;
+                StringSearch keyword = new StringSearch();
+                keyword.SetKeywords(SensitiveStr.Split('|'));
+                item.F_SmsContent = keyword.Replace(content, '*');
+            });
+        }
+
+         //发送短信主程序
+         int StartJob()
+        {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            List<SMC_SendSms> ReadyList = GetSMCSendSmsList();//获取列表
+            DirtyWordRemove(ReadyList);//敏感词替换
+            
+            //拆分长短信
+            Parallel.ForEach(ReadyList, item =>
+             {
+                 SplitLongSmsContent(item.F_SmsContent, item.F_Id);
+             });
+            List<Sev_SendDateDetail> SendDataList = GetSevSendDateDetailParallel(ReadyList);//线程方式获取发送数据（黑名单检测通过）
+            // List<Sev_SendDateDetail> SednDataList = GetSevSendDateDetail(ReadyList);//非线程方式获取发送数据（黑名单检测通过）
+
+            //拆分短信
+            //============
+            //
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                db.SqlBulkCopy(SendDataList); //批量插入 适合海量数据插入
+                //SEV_SendDataDetail数据插入（有黑名单验证）
+            }
+            //修改状态为已处理，修改发送状态为已发送，测试用
+            ChangeSendState(ReadyList);
+            stopWatch.Stop();
+            Console.WriteLine("线程============"+ stopWatch.ElapsedMilliseconds);
+            return SendDataList.Count();
+        }
+
+//****************************************************************************修改，获取数据**************************************************************************************
+        //取得发送表数据，已审核，未发送，处理中，F_DealState=9，F_SendState=0，F_OperateState=1
+        private List<SMC_SendSms> GetSMCSendSmsList()
+        {
+            List<SMC_SendSms> list_smc_sendsms = new List<SMC_SendSms>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                list_smc_sendsms = db.SqlQuery<SMC_SendSms>("select F_Id,F_MobileList,F_CreatorUserId,F_MobileCount,F_SmsContent from SMC_SendSms where F_DealState=9 and F_SendState=0 and F_OperateState=1");
+            }
+            return list_smc_sendsms;
+        }
+
+        //修改处理状态为已处理
+        private void ChangeOperateState(string F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                db.Update<SMC_SendSms>(new { F_OperateState = 9 }, it => it.F_Id == F_Id);
+            }
+        }
+
+        //取得黑名单列表
+        private List<Models.TXL_BlackList> GetBlackList()
+        {
+            List<Models.TXL_BlackList> list_blacklist = new List<Models.TXL_BlackList>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                string sql = "select Mobile from TXL_BlackList";
+                list_blacklist = db.SqlQuery<Models.TXL_BlackList>(sql);
+            }
+            return list_blacklist;
+        }
+
+        //获取发送数据（号码）//已经进行黑名单校验
+        private List<Sev_SendDateDetail> GetSendData(string SMC_FId)
+        {
+            List<Sev_SendDateDetail> SendDatalist = new List<Sev_SendDateDetail>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                string sql = "select F_Id,F_PhoneCode,F_UserId from Sev_SendDateDetail where SMC_F_Id = @SMC_FId";
+                SendDatalist = db.SqlQuery<Sev_SendDateDetail>(sql,new { SMC_F_Id = SMC_FId });
+            }
+            return SendDatalist;
+        }
+
+        //获取系统敏感词字符串
+        private string GetSensitiveWords()
+        {
+            List<SMS_SensitiveWords> Sensitivelist = new List<SMS_SensitiveWords>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                string sql = "select F_SensitiveWords from SMS_SensitiveWords";
+                Sensitivelist = db.SqlQuery<SMS_SensitiveWords>(sql);
+            }
+            string SensitiveStr = null;
+            foreach (var item in Sensitivelist)
+            {
+                SensitiveStr += item.F_SensitiveWords + "|";
+            }
+            return SensitiveStr;
+        }
+
+        //修改发送状态为已发送（测试用）
+        private void ChangeSendStateDone(string F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                db.Update<SMC_SendSms>(new { F_OperateState = 9 }, it => it.F_Id == F_Id);
+            }
+        }
+    }
+}

@@ -1,0 +1,214 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Mysoft.Task.TaskSet
+{
+    /// <summary>
+    /// 发送前的准备任务
+    /// </summary>
+    ///<remarks>DisallowConcurrentExecution属性标记任务不可并行，要是上一任务没运行完即使到了运行时间也不会运行</remarks>
+    [DisallowConcurrentExecution]
+    public class SendSmsJob : IJob
+    {
+        private static string connStr = SysConfig.SqlConnect;
+        public void Execute(IJobExecutionContext context)
+        {
+            try
+            {
+                //获取任务执行参数,任务启动时会读取配置文件TaskConfig.xml节点TaskParam的值传递过来、、好像是空值
+                //object objParam = context.JobDetail.JobDataMap.Get("TaskParam");
+
+
+                int listcount = StartJob();
+
+                LogHelper.WriteLog("短信审核测试,当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss" + "操作了" + listcount + "条符合条件数据"));
+            }
+            catch (Exception ex)
+            {
+                JobExecutionException e2 = new JobExecutionException(ex);
+                LogHelper.WriteLog("任务异常 ", ex);
+                //1.立即重新执行任务 
+                e2.RefireImmediately = true;
+                //2 立即停止所有相关这个任务的触发器
+                //e2.UnscheduleAllTriggers=true; 
+            }
+        }
+
+        //拆成66个字，并且进行标记啊啥的
+        private List<Sev_FinalSendDetail> GetFinalList(List<Sev_SendDateDetail> HttpSendList)
+        {
+            List<Sev_FinalSendDetail> FinalList = new List<Sev_FinalSendDetail>();
+            Parallel.ForEach(HttpSendList, item =>
+             {
+                 Sev_FinalSendDetail senditem = new Sev_FinalSendDetail();
+                 senditem.F_Id = Guid.NewGuid().ToString();
+                 senditem.F_SendId = item.F_Id;
+                 senditem.F_Level = item.F_Level;
+                 senditem.F_DealState = 0;//默认未发送
+                 senditem.F_Report = "0";//默认未收到回复报告
+                 senditem.F_CreatorTime = DateTime.Now;
+                 senditem.F_Reissue = 0;//初始化补发次数为0；
+                 senditem.F_Response = 0;//默认未收到应答
+                 senditem.F_SmsContent = item.F_SmsContent;//内容直接复制拆大段表的内容，不需要拆分
+                 //decimal SmsCount = Math.Ceiling(Convert.ToDecimal(item.F_SmsContent.Length) / 66);//向上取整获取发送条数
+                 //for (int i = 0; i < SmsCount; i++)
+                 //{
+                 //    senditem.F_Id = Guid.NewGuid().ToString();
+                 //    senditem.F_SmsOrderNo = i + 1;
+                 //    if ((i + 1) * 66 < item.F_SmsContent.Length)
+                 //        senditem.F_SmsContent = item.F_SmsContent.Substring(i * 66, 66);//进行66个字的拆分
+                 //    else
+                 //        senditem.F_SmsContent = item.F_SmsContent.Substring(i * 66, item.F_SmsContent.Length-66);//避免超过长度
+
+                 //    senditem.F_SmsCount = senditem.F_SmsContent.Length;
+                 //    FinalList.Add(senditem);//加入队列
+                 //}
+                 FinalList.Add(senditem);//加入队列
+                 item.F_DealState = 1;//更新状态为已拆分状态
+             });
+            return FinalList;//返回拆分好的队列
+        }
+
+        //批量修改扣量数据的发送状态，有失败和成功
+        private List<Sev_FinalSendDetail> ChangeBuckleSendState(List<Sev_FinalSendDetail> BuckleSendList)
+        {
+            List<Sev_FinalSendDetail> DealedList = new List<Sev_FinalSendDetail>();
+            Dictionary<string, List<Sev_FinalSendDetail>> dic = new Dictionary<string, List<Sev_FinalSendDetail>>();//新建字典类，判断发送批次<key:F_SendId;value:EntityList>
+            for (int i = 0; i < BuckleSendList.Count; i++)
+            {
+                if (!dic.ContainsKey(BuckleSendList[i].F_SendId))
+                {
+                    dic.Add(BuckleSendList[i].F_SendId, new List<Sev_FinalSendDetail>());//添加新的键
+                    dic[BuckleSendList[i].F_SendId].Add(BuckleSendList[i]);//添加Value值
+                }
+                else
+                    dic[BuckleSendList[i].F_SendId].Add(BuckleSendList[i]);
+            }
+            Parallel.ForEach(dic, item =>
+             {
+                 decimal SuccessRate = (decimal)GetSendRate(item.Key) / 100; ;//成功率
+                 decimal SendFalseNum = Math.Floor(item.Value.Count() * (1 - SuccessRate));//计算发送的失败条数，向下取整数
+                 Random radom = new Random();
+                 List<int> RadomList = new List<int>();//随机数列
+                 for (int x = 0; x < SendFalseNum; x++)//获取不重复的随机数
+                 {
+                     int RadomNum = radom.Next(0, item.Value.Count() - 1);
+                     if (!RadomList.Contains(RadomNum)) //集合list不包含num，就把num添加进list。这样保证随机数不重复
+                     {
+                         RadomList.Add(RadomNum);
+                     }
+                     else
+                         x--;
+                 }
+                 for (int i = 0; i < item.Value.Count(); i++)
+                 {
+                     if (RadomList.Contains(i))//在随机数列中，判断为发送失败
+                     {
+                         item.Value[i].F_Report = "2";//失败报告
+                         item.Value[i].F_Response = 2;//已收到应答
+                         item.Value[i].F_DealState = 2;//已处理已发送，已经收到应答，失败
+                     }
+                     else
+                     {
+                         item.Value[i].F_Report = "1";//成功报告
+                         item.Value[i].F_Response = 2;//已收到应答
+                         item.Value[i].F_DealState = 2;//已处理已发送，已经收到应答，成功
+                     }
+                     DealedList.Add(item.Value[i]);//放入新的队列
+                 }
+             });
+            return DealedList;//返回处理好的队列
+        }
+
+        int StartJob()
+        {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            List<Sev_SendDateDetail> HttpSendList = GetHttpSendList();
+            List<Sev_SendDateDetail> BuckleList = GetBuckleList();
+            int count = HttpSendList.Count() + BuckleList.Count();
+
+            List<Sev_FinalSendDetail> FinalList = GetFinalList(HttpSendList);//拆分成小段，并且更新列表的拆分状态，因为列表是引用，不需要返回值。
+            List<Sev_FinalSendDetail> FinalBuckleList = GetFinalList(BuckleList);
+
+            List<Sev_FinalSendDetail> DealedBuckleList = ChangeBuckleSendState(FinalBuckleList);//扣量列表做扣量处理（状态成功或者失败）
+            //重新引用
+            try
+            {
+                using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+                {
+                    db.SqlBulkCopy(FinalList); //批量插入 海量数据插入Sev_FinalSendDetail，
+                                               //db.InsertRange();//批量插入数据（备用方法）
+
+                    db.SqlBulkCopy(DealedBuckleList);//批量插入扣量的数据
+
+                    db.SqlBulkReplace(HttpSendList); //批量更新 ,把处理状态变成已拆分
+                    db.SqlBulkReplace(BuckleList);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                Console.Read();
+            }
+            stopWatch.Stop();
+            Console.WriteLine("线程============" + stopWatch.ElapsedMilliseconds);
+            return count;
+        }
+
+
+
+        //*************************************************************************数据库操作方法***************************************************************************************
+
+        //获取Http发送方式是发送数据，Sev_SendDateDetail的处理状态（F_DealState)为0，可拆分.发送协议(F_ProtocolType)为1,http发送方式，根据优先级（F_Level）排序
+        private List<Sev_SendDateDetail> GetHttpSendList()
+        {
+            List<Sev_SendDateDetail> httpsendlist = new List<Sev_SendDateDetail>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                string sql = "select F_Id,Id,F_UserId,F_PhoneCode,F_SmsContent,F_CreatorUserId from Sev_SendDateDetail"
+                       + " where F_DealState=0  and F_ProtocolType=1  ORDER BY F_Level DESC";
+                httpsendlist = db.SqlQuery<Sev_SendDateDetail>(sql);//F_CreatorUserId是用户的F_Id
+            }
+            return httpsendlist;
+        }
+
+        //获取Http发送方式是发送数据，Sev_SendDateDetail的处理状态（F_DealState)为0，可拆分.发送协议(F_ProtocolType)为1,http发送方式，根据优先级（F_Level）排序
+        private List<Sev_SendDateDetail> GetBuckleList()
+        {
+            List<Sev_SendDateDetail> buckleList = new List<Sev_SendDateDetail>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                string sql = "select F_Id,Id,F_UserId,F_PhoneCode,F_SmsContent,F_CreatorUserId from Sev_SendDateDetail"
+                       + " where F_DealState=3 ";
+                buckleList = db.SqlQuery<Sev_SendDateDetail>(sql);//F_CreatorUserId是用户的F_Id
+            }
+            return buckleList;
+        }
+
+        //根据F_SendId获取发送任务的组合通道F_ID再取得GroupChannel实体对象（发送率，成功率等）
+        private decimal GetSendRate(string SendId)
+        {
+            OC_GroupChannel groupchannel = new OC_GroupChannel();
+            decimal SuccessRate = 100;
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                string SMC_F_Id = db.Queryable<Sev_SendDateDetail>().SingleOrDefault(t => t.F_Id == SendId).SMC_F_Id;
+                string GroupChannelFid = db.Queryable<SMC_SendSms>().SingleOrDefault(t => t.F_Id == SMC_F_Id).F_GroupChannelId;
+                SuccessRate = Convert.ToDecimal(db.Queryable<OC_GroupChannel>().SingleOrDefault(t => t.F_ID == GroupChannelFid).F_SuccessRate);
+            }
+            return SuccessRate;
+        }
+
+    }
+}

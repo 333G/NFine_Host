@@ -1,0 +1,13 @@
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\log4net.config
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\Mysoft.Utility.dll
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\Mysoft.Utility.pdb
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\Common.Logging.Core.dll
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\Common.Logging.dll
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\HttpHelper.dll
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\log4net.dll
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\Newtonsoft.Json.dll
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\NVelocity.dll
+E:\17_3_30\Project1\Mysoft.Utility\bin\Debug\Quartz.dll
+E:\17_3_30\Project1\Mysoft.Utility\obj\Debug\Mysoft.Utility.csprojResolveAssemblyReference.cache
+E:\17_3_30\Project1\Mysoft.Utility\obj\Debug\Mysoft.Utility.dll
+E:\17_3_30\Project1\Mysoft.Utility\obj\Debug\Mysoft.Utility.pdb

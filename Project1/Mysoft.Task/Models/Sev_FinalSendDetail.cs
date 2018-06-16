@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Models
+{
+    class Sev_FinalSendDetail
+    {
+        //自增Id
+        public Int64 Id { get; set; }
+
+        //主键GUID
+        public string F_Id { get; set; }
+
+        //发送F_Id
+        public string F_SendId { get; set; }
+
+        //发送内容，拆分成66字符之后的最小条
+        public string F_SmsContent { get; set; }
+
+        //内容序号，大短信拆分之后的编号
+        public int F_SmsOrderNo { get; set; }
+
+        //字数,拆完后每小段有多少字
+        public int F_SmsCount { get; set; }
+
+        //应答状态
+        public int F_Response { get; set; }
+
+        //回执报告(1或3=成功；2=失败；0=等待；5=超过当天发送限制；)
+        public string F_Report { get; set; }
+
+        //同步给用户的报告
+        public string F_SyncReport { get; set; }
+
+        //创建时间
+        public DateTime? F_CreateTime { get; set; }
+
+        //发送(提交？)时间 
+        public DateTime? F_SendTime { get; set; }
+
+        //应答时间
+        public DateTime? F_ResponseTime { get; set; }
+
+        //回执报告时间
+        public DateTime? F_ReportTime { get; set; }
+
+        //报告同步时间
+        public DateTime? F_SyncTime { get; set; }
+
+        //处理状态处理状态 处理状态  0 待处理 ：未发送 
+        //1处理中 ：已发送 未收到应答 
+        //2已处理 ：已发送 收到应答
+        public int F_DealState { get; set; }
+
+        //消息Id
+        public string F_MsgId { get; set; }
+
+        //任务编号
+        public int F_JobNum { get; set; }
+
+        /// <summary>
+        /// Desc:补发 
+        /// Default:- 
+        /// Nullable:False 
+        /// </summary>
+        public int? F_Reissue { get; set; }
+
+
+        /// <summary>
+        /// Desc:优先级 
+        /// Default:- 
+        /// Nullable:False 
+        /// </summary>
+        public int? F_Level { get; set; }
+  
+        //是否返款
+        public bool? F_IsCashBack { get; set; }
+
+        //通道编号
+        public string F_AccessNumber { get; set; }
+
+        //创建人FID
+        public string F_CreatorUserId { get; set; }
+
+    }
+}

@@ -1,0 +1,569 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using ToolGood.Words;
+
+namespace Mysoft.Task.TaskSet
+{
+    /// <summary>
+    /// 测试任务
+    /// </summary>
+    ///<remarks>DisallowConcurrentExecution属性标记任务不可并行，要是上一任务没运行完即使到了运行时间也不会运行</remarks>
+    [DisallowConcurrentExecution]
+    public class SendSmsJob : IJob
+    {
+        private static string connStr = SysConfig.SqlConnect;
+        public void Execute(IJobExecutionContext context)
+        {
+            try
+            {
+                int listcount = StartJob();
+                LogHelper.WriteLog("短信发送测试,当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss" + "操作了" + listcount + "条符合条件数据"));
+            }
+            catch (Exception ex)
+            {
+                JobExecutionException e2 = new JobExecutionException(ex);
+                LogHelper.WriteLog("任务异常", ex);
+                //1.立即重新执行任务 
+                e2.RefireImmediately = true;
+                //2 立即停止所有相关这个任务的触发器
+                //e2.UnscheduleAllTriggers=true; 
+            }
+        }
+
+        //线程方式，返回详单的实体，即拆号码（F_MobileList）
+        private List<Sev_SendDateDetail> GetSevSendDateDetailParallel(List<SMC_SendSms> list1)
+          {
+              List<Sev_SendDateDetail> list_sev_sdd = new List<Sev_SendDateDetail>();//返回待发送数据的记录   
+              Parallel.ForEach(list1, item =>
+              {
+                  if (item.F_MobileList != null)
+                  {
+                      Sev_SendDateDetail ssdd = new Sev_SendDateDetail();//生成实体对象
+                      ssdd.SMC_F_Id = item.F_Id;
+                      ssdd.F_RootId = item.F_RootId;
+                      ssdd.F_UserId = GetUserInfo(item.F_CreatorUserId).F_UserId.ObjToInt();
+                      ssdd.F_BlackWhite = 1;//默认没有黑白名单
+                      ssdd.F_CreatorUserId = item.F_CreatorUserId;
+                      ssdd.F_SmsContent += Getsignature(ssdd.F_CreatorUserId);//添加签名
+                      ssdd.F_SmsContent += item.F_SmsContent;//添加短信
+                      ssdd.F_Level = item.F_Priority;//优先级继承
+                      ssdd.F_Reissue = 0;//补发次数初始为0
+                      ssdd.F_Price = GetGroupChannelPrice(item.F_GroupChannelId);//获取短信单价
+                      ssdd.F_IsCashBack = false;//默认没有返款
+                      ssdd.F_Response = 0;//默认应答状态为0
+                      string[] mobilelist = item.F_MobileList.Split(',');
+                      int MobileCount = mobilelist.Count();
+                      List<int> RadomList = new List<int>();//随机数列
+                      if (MobileCount > 500)//发送号码数量>500才进入扣量程序
+                      {
+                          OC_GroupChannel ChannelModel = GetSendRate(item.F_GroupChannelId);//对队列进行发送率，成功率与扣量计算处理
+                          decimal SendRate = (decimal)ChannelModel.F_SendRate.ObjToInt() / 100;//发送率
+                          decimal SuccessRate = (decimal)ChannelModel.F_SuccessRate.ObjToInt() / 100;//成功率
+                          decimal RemoveNum = Math.Floor(mobilelist.Count() * (1 - SendRate));//获取扣量条数,向下取整数
+                          decimal SendFalseNum = Math.Floor((mobilelist.Count() - RemoveNum) * (1 - SuccessRate));//计算发送的失败条数，向下取整数
+                          decimal RemoveFalseNum = Math.Floor(RemoveNum * (1 - SuccessRate));//计算移除的失败条数，向下取整数
+                          Random radom = new Random();
+                          for (int x = 0; x < RemoveNum; x++)//获取不重复的随机数
+                          {
+                              int RadomNum = radom.Next(0, MobileCount - 1);
+                              if (!RadomList.Contains(RadomNum)) //集合list不包含num，就把num添加进list。这样保证随机数不重复
+                              {
+                                  RadomList.Add(RadomNum);
+                              }
+                              else
+                                  x--;
+                          }
+                          for (int n = 0; n < MobileCount; n++)
+                          {
+                              if (RadomList.Contains(n))
+                                  ssdd.F_Report = 3;//如果n在随机队列之内，F_Report直接变为3，扣量状态（前台显示已发送，但是实际上不给发。可以写补发程序进行补发）
+                              ssdd.F_PhoneCode = mobilelist[n].Replace("\t", "");
+
+                              string[] PhoneCodeAndlocatiostring = (GetOperatoeAndLocation(ssdd.F_PhoneCode)).Split(';');
+                              ssdd.F_Operator = PhoneCodeAndlocatiostring[0].ObjToInt();//根据号码查运营商和号码归属地
+                              int ChannelId = GetChannelId(ssdd.F_Operator.ObjToInt(), item.F_GroupChannelId);
+                              if (ChannelId == 0)
+                              {
+                                  ssdd.F_Report = 2;//错误,可能是没有相应的通道.发送失败
+                                  ssdd.F_ChannelId = ChannelId;//根据运营商，更新成BaseChannelId
+                              }
+                              ssdd.F_Province = PhoneCodeAndlocatiostring[1];//省份
+                              ssdd.F_LongsmsCount = GetLongSmsCount(ssdd.F_ChannelId.ObjToInt(), ssdd.F_SmsContent);//短信计数
+                              ssdd.F_SmsContent = AddLongSmsSign(ssdd.F_ChannelId.ObjToInt(), ssdd.F_SmsContent, ssdd.F_CreatorUserId);
+                              if (ssdd.F_LongsmsCount < 0)
+                              {
+                                  ssdd.F_Report = 6;//发送短信超过通道规定长度
+                              }
+
+                              int LinmitNum = GetUserInfo(item.F_CreatorUserId).F_MessageNum.ObjToInt();
+                              if (LinmitNum != 0 && LinmitNum >= DailySendCount(ssdd.F_PhoneCode))
+                                  ssdd.F_Report = 5;//号码超过发送次数限制，不发送。
+                              int verificationNum_1 = GetUserInfo(item.F_CreatorUserId).F_OneCode.ObjToInt();
+                              int verificationNum_24 = GetUserInfo(item.F_CreatorUserId).F_TwentyFourCode.ObjToInt();
+                              if (verificationNum_1 != 0 && verificationNum_1 >= OneHourverificationCount(ssdd.F_PhoneCode))
+                                  ssdd.F_Report = 5;//号码超过发送次数限制，不发送。
+                              if (verificationNum_24 != 0 && verificationNum_24 >= DailyverificationCount(ssdd.F_PhoneCode))
+                                  ssdd.F_Report = 5;//号码超过发送次数限制，不发送。
+
+                              string Subscrib = IsSubscrib(ssdd.F_ChannelId.ObjToInt());
+                              if (ssdd.F_ChannelId != 0 && Subscrib != null)//判断是否开启退订
+                              {
+                                  ssdd.F_SmsContent = ssdd.F_SmsContent + "【"+Subscrib+"】";//退订
+                              }
+
+                              list_sev_sdd.Add(ssdd);
+                          }
+                      }
+                      else//不进入扣量程序
+                      {
+                          for (int n = 0; n < MobileCount; n++)
+                          {
+                              ssdd.F_PhoneCode = mobilelist[n].Replace("\t", "");
+
+                              string[] PhoneCodeAndlocatiostring = (GetOperatoeAndLocation(ssdd.F_PhoneCode)).Split(';');
+
+                              ssdd.F_Operator = PhoneCodeAndlocatiostring[0].ObjToInt();//根据号码查运营商和号码归属地
+                              int ChannelId = GetChannelId(ssdd.F_Operator.ObjToInt(), item.F_GroupChannelId);
+                              if (ChannelId == 0)
+                              {
+                                  ssdd.F_Report = 2;//错误,可能是没有相应的通道.发送失败
+                                  ssdd.F_ChannelId = ChannelId;//根据运营商，更新成BaseChannelId
+                              }
+                              ssdd.F_Province = PhoneCodeAndlocatiostring[1];//省份
+                              
+                              ssdd.F_LongsmsCount = GetLongSmsCount(ssdd.F_ChannelId.ObjToInt(), ssdd.F_SmsContent);//短信计数
+                              ssdd.F_SmsContent = AddLongSmsSign(ssdd.F_ChannelId.ObjToInt(), ssdd.F_SmsContent, ssdd.F_CreatorUserId);
+                              if (ssdd.F_LongsmsCount < 0)
+                              {
+                                  ssdd.F_Report = 6;//发送短信超过通道规定长度
+                              }
+
+                              int LinmitNum = GetUserInfo(item.F_CreatorUserId).F_MessageNum.ObjToInt();
+                              if (LinmitNum != 0 && LinmitNum >= DailySendCount(ssdd.F_PhoneCode))
+                                  ssdd.F_Report = 5;//号码超过发送次数限制，不发送。
+                              int verificationNum_1 = GetUserInfo(item.F_CreatorUserId).F_OneCode.ObjToInt();
+                              int verificationNum_24 = GetUserInfo(item.F_CreatorUserId).F_TwentyFourCode.ObjToInt();
+                              if (verificationNum_1 != 0 && verificationNum_1 >= OneHourverificationCount(ssdd.F_PhoneCode))
+                                  ssdd.F_Report = 5;//号码超过发送次数限制，不发送。
+                              if (verificationNum_24 != 0 && verificationNum_24 >= DailyverificationCount(ssdd.F_PhoneCode))
+                                  ssdd.F_Report = 5;//号码超过发送次数限制，不发送。
+
+                              string Subscrib = IsSubscrib(ssdd.F_ChannelId.ObjToInt());
+                              if (ssdd.F_ChannelId != 0 && Subscrib!=null)//判断是否开启退订
+                              {
+                                  ssdd.F_SmsContent = ssdd.F_SmsContent + "【+" + Subscrib + "】";//退订
+                              }
+
+                              list_sev_sdd.Add(ssdd);
+                          }
+                      }
+                  }
+              });
+            list_sev_sdd = BlackCheckednumParallel(list_sev_sdd);//线程判断黑名单，返回符合的list。
+            return list_sev_sdd;
+        }
+
+        //线程方式进行黑名单判断，返回SendData的List<>.，为发送做最后的准备。
+        private List<Sev_SendDateDetail> BlackCheckednumParallel(List<Sev_SendDateDetail> senddatalist)
+        {
+            List<Models.TXL_BlackList> blacklist = GetBlackList();
+            Parallel.ForEach(senddatalist, item =>
+            {
+                foreach (var num in blacklist)
+                {
+                    if (item.F_PhoneCode == num.Mobile)//如果联系电话在黑名单中，移除行
+                    {
+                        item.F_BlackWhite = 2;//修改为黑名单
+                        item.F_Report = 2;//报告状态为失败
+                        item.F_Level = 0;//黑名单的优先级为0
+                        break;
+                    }
+                }
+            });
+            return senddatalist;
+        }
+
+        //修改发送状态
+        private void ChangeSendState(List<SMC_SendSms> list)
+        {
+            Parallel.ForEach(list, item =>
+             {
+                 ChangeSendStateDone(item.F_Id);//修改为已发送
+                 ChangeOperateState(item.F_Id);//修改状态为已处理  
+             });
+        }
+
+        //短信内容敏感词处理,线程方法||顺带判断是否为验证码短信
+        private List<SMC_SendSms> DirtyWordRemove(List<SMC_SendSms> contentlist)
+        {
+            string SensitiveStr = GetSensitiveWords();
+            List<SMC_SendSms> newlist = new List<SMC_SendSms>();
+            if(SensitiveStr!=null)
+            {
+                Parallel.ForEach(contentlist, item =>
+                { 
+                    string content = item.F_SmsContent;
+                    StringSearch keyword = new StringSearch();
+                    keyword.SetKeywords(SensitiveStr.Split('|'));
+                    item.F_SmsContent = keyword.Replace(content, '*');
+                    string []s = { "验证码" };//判断是否有关键字“验证码”
+                    keyword.SetKeywords(s);
+                    if (keyword.ContainsAny(content))
+                    {
+                        item.F_IsVerificationCode = true;//修改，短信验证码标记为true
+                    }
+                    newlist.Add(item);
+                });
+            }
+            return newlist;
+        }
+
+        //余额判定,长短信是否超过通道最大字符判定
+        private List<Sev_SendDateDetail> charge(List<Sev_SendDateDetail> SendDataList)
+        {
+            Parallel.ForEach(SendDataList, item => {
+                item.F_SendTime = System.DateTime.Now;//提交时间
+                decimal cost = item.F_Price * item.F_LongsmsCount.ObjToDecimal();//计算总费用:单价(F_Price)*短信条数(F_LongsmsCount)
+                if (UpdateBalance(cost, item.F_UserId) == false)//判断余额，以及更新
+                {
+                    item.F_Report = 4;//余额不足，则改状态
+                }
+            });
+            return SendDataList;
+        }
+         //发送短信主程序
+         int StartJob()
+        {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            List<SMC_SendSms> ReadyList = GetSMCSendSmsList();//获取列表
+            ReadyList = DirtyWordRemove(ReadyList);//敏感词替换，判断是否为验证码,返回处理完成后的list
+            
+            List<Sev_SendDateDetail> SendDataList = GetSevSendDateDetailParallel(ReadyList);//线程方式获取发送数据（黑名单检测通过）
+            int count = SendDataList.Count();//计数
+            //扣费,更新列表状态
+            SendDataList = charge(SendDataList);
+            //修改状态为已处理，
+            ChangeSendState(ReadyList);
+            //
+            try
+            {
+                using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+                { 
+                    db.SqlBulkCopy(SendDataList); //批量插入 海量数据插入Sev_SendDateDetail
+                                                  //SEV_SendDataDetail数据插入（有黑名单验证）
+                    //db.InsertRange(SendDataList);//批量插入数据（备用方法）
+                }
+                using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+                {
+                    db.SqlBulkReplace(ReadyList); //批量更新 海量数据更新SMC_SendSms（是否为验证码，以及短信内容替换敏感词
+                }
+            }
+            catch (Exception ex){
+                Console.WriteLine(ex);
+                Console.Read();
+            }
+            stopWatch.Stop();
+            Console.WriteLine("线程============"+ stopWatch.ElapsedMilliseconds);
+            return count;
+        }
+
+//****************************************************************************修改，获取数据**************************************************************************************
+       
+        //取得发送表数据，已审核，待发送，处理中，F_DealState=9，F_SendState=0，F_OperateState=1，根据优先级排序(大的在前）
+        private List<SMC_SendSms> GetSMCSendSmsList()
+        {
+            List<SMC_SendSms> list_smc_sendsms = new List<SMC_SendSms>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                list_smc_sendsms = db.SqlQuery<SMC_SendSms>("select F_Id,F_MobileList,F_CreatorUserId,F_MobileCount,F_SmsContent,F_RootId,F_GroupChannelId,F_Priority from SMC_SendSms where F_DealState=9 and F_SendState=0 and F_OperateState=1 ORDER BY F_Priority DESC");
+            }
+            return list_smc_sendsms;
+        }
+
+        //根据组合通道F_ID取得GroupChannel实体对象
+        private OC_GroupChannel GetSendRate(string F_Id)
+        {
+            OC_GroupChannel groupchannel = new OC_GroupChannel();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                string sql = "select F_SendRate,F_SuccessRate from OC_GroupChannel";//获取F_Reviewed
+                groupchannel = db.SqlQuery<OC_GroupChannel>(sql).Single(t=>t.F_ID==F_Id);
+            }
+            return groupchannel;
+        }
+
+        //修改处理状态为已处理
+        private void ChangeOperateState(string F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                db.Update<SMC_SendSms>(new { F_OperateState = 9 }, it => it.F_Id == F_Id);
+            }
+        }
+
+        //取得黑名单列表
+        private List<Models.TXL_BlackList> GetBlackList()
+        {
+            List<Models.TXL_BlackList> list_blacklist = new List<Models.TXL_BlackList>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                string sql = "select Mobile from TXL_BlackList";
+                list_blacklist = db.SqlQuery<Models.TXL_BlackList>(sql);
+            }
+            return list_blacklist;
+        }
+
+        //获取发送数据（号码）//已经进行黑名单校验
+        private List<Sev_SendDateDetail> GetSendData(string SMC_FId)
+        {
+            List<Sev_SendDateDetail> SendDatalist = new List<Sev_SendDateDetail>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                string sql = "select F_Id,F_PhoneCode,F_UserId from Sev_SendDateDetail where SMC_F_Id = @SMC_FId";
+                SendDatalist = db.SqlQuery<Sev_SendDateDetail>(sql,new { SMC_F_Id = SMC_FId });
+            }
+            return SendDatalist;
+        }
+
+        //获取系统敏感词字符串
+        private string GetSensitiveWords()
+        {
+            List<SMS_SensitiveWords> Sensitivelist = new List<SMS_SensitiveWords>();
+            try
+            {
+                using (SqlSugarClient db = new SqlSugarClient(connStr))
+                {
+                    string sql = "select F_SensitiveWords from SMS_SensitiveWords";
+                    Sensitivelist = db.SqlQuery<SMS_SensitiveWords>(sql);
+                }
+                string SensitiveStr = null;
+                foreach (var item in Sensitivelist)
+                {
+                    SensitiveStr += item.F_SensitiveWords + "|";
+                }
+                return SensitiveStr;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        //修改发送状态为已发送（测试用）
+        private void ChangeSendStateDone(string F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                db.Update<SMC_SendSms>(new { F_SendState = 9 }, it => it.F_Id == F_Id);
+            }
+        }
+
+        //根据用户F_Id获取Id和24小时验证码发送量，1小时验证码发送量，每个号码接收短信次数限制量
+        private Models.OC_UserInfo GetUserInfo(string F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                string sql = "select F_UserId from OC_UserInfo where F_Id=@F_Id";
+                Models.OC_UserInfo data=db.SqlQuery<Models.OC_UserInfo>(sql,new { F_Id=F_Id}).Single();
+                return data;
+            }
+        }
+
+        //根据号码获取当天的发送量
+        private int DailySendCount (string PhoneCode)
+        {
+            int count = 0;
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                //获取某个号码，当天之内的发送次数
+                count = db.Queryable<Sev_SendDateDetail>().Where(t => t.F_PhoneCode == PhoneCode && DateTime.Today < t.F_SendTime && t.F_SendTime < DateTime.Today.AddDays(+1)).Count();
+            }
+            return count;
+        }
+
+        //根据号码获取当日的验证码发送限制
+        private int DailyverificationCount(string PhoneCode)
+        {
+            int count = 0;
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                //获取某个号码当天发送的验证码次数
+                count = db.Queryable<Sev_SendDateDetail>().Where(t => t.F_PhoneCode == PhoneCode && DateTime.Today < t.F_SendTime && t.F_SendTime < DateTime.Now).Count();
+            }
+            return count;
+        }
+
+        //根据号码获取一小时的验证码发送限制
+        private int OneHourverificationCount(string PhoneCode)
+        {
+            int count = 0;
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                //获取某个号码当天发送的验证码次数
+                count = db.Queryable<Sev_SendDateDetail>().Where(t => t.F_PhoneCode == PhoneCode && DateTime.Now.AddHours(-1) < t.F_SendTime && t.F_SendTime < DateTime.Now.AddHours(+1)).Count();
+            }
+            return count;
+        }
+        //根据号码获取运营商和归属地
+        private string GetOperatoeAndLocation(string PhoneCode)
+        {
+            PhoneCode = PhoneCode.Substring(0, 7);//取号码的前7位进行判断
+            Sys_PhoneNumAreaInfo PhoneInfo = new Sys_PhoneNumAreaInfo();
+            string codeandlocation=null;
+            try
+            {
+                using (SqlSugarClient db = new SqlSugarClient(connStr))
+                {
+                    PhoneInfo = db.Queryable<Sys_PhoneNumAreaInfo>().SingleOrDefault(t => t.F_NumSegment == PhoneCode);
+                }
+            }
+            catch { return null; }
+            if (PhoneInfo.F_Operator == "中国移动" || PhoneInfo.F_Operator == "移动")
+                codeandlocation = "1" + ";";
+            else if (PhoneInfo.F_Operator == "中国联通" || PhoneInfo.F_Operator == "联通")
+                codeandlocation = "2" + ";";
+            else
+                codeandlocation = "3" + ":"; 
+
+            codeandlocation += PhoneInfo.F_PostCode;
+            return codeandlocation;
+        }
+
+        //根据运营商获取组合通道内的基础通道
+        private int GetChannelId(int Operator, string GroupChannelId)
+        {
+            int ChannelId=0;
+            try
+            {
+                using (SqlSugarClient db = new SqlSugarClient(connStr))
+                {
+                    if (Operator == 1)//移动
+                        ChannelId = db.Queryable<OC_GroupChannel>().SingleOrDefault(t => t.F_ID == GroupChannelId).F_MobileChannel.ObjToInt();
+                    else if (Operator == 2)//联通
+                        ChannelId = db.Queryable<OC_GroupChannel>().SingleOrDefault(t => t.F_ID == GroupChannelId).F_UnicomChannel.ObjToInt();
+                    else
+                        ChannelId = db.Queryable<OC_GroupChannel>().SingleOrDefault(t => t.F_ID == GroupChannelId).F_TelecomChannel.ObjToInt();
+                }
+            }
+            catch
+            { return 0; }
+            return ChannelId;
+        }
+
+        //根据通道Id获取长短信计数
+        private int GetLongSmsCount(int ChannelId, string smscontent)
+        {
+            int CharacterCount = 0;
+            OC_BaseChannel BaseChannelModel = new OC_BaseChannel();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                BaseChannelModel = db.Queryable<OC_BaseChannel>().SingleOrDefault(t => t.Id == ChannelId);
+            }
+            CharacterCount = BaseChannelModel.F_CharacterCount.ObjToInt();
+            int ContentCount = 1;
+            if (CharacterCount * ContentCount < smscontent.Length)
+            {
+                ContentCount++;
+            }
+            if (BaseChannelModel.F_LongSmsSign == false)
+            {
+                if(ContentCount > 1)
+                    return -1;//不支持长短信却发了长短信
+            }
+            return ContentCount;
+        }
+
+        ////长短信的标记添加
+        private string AddLongSmsSign(int ChannelId, string smscontent, string UserFId)
+        {
+            int Count = 1;
+            string newsmscontent = null;
+            string Signature = null;
+            OC_BaseChannel BaseChannelModel = new OC_BaseChannel();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                BaseChannelModel = db.Queryable<OC_BaseChannel>().SingleOrDefault(t => t.Id == ChannelId);//取通道
+                string sql = "select F_Signature from Sys_User where F_Id=@F_Id";
+                Signature = db.SqlQuery<Sys_User>(sql, new { F_Id = UserFId }).Single().F_Signature;//取签名  
+            }
+            int Length = smscontent.Length;
+            int MaxLength = BaseChannelModel.F_LongSmsNumber.ObjToInt();
+            if (Length > MaxLength)
+            {
+                Count += Length / MaxLength;
+                for (int i = 0; i < Count; i++)
+                {
+                }
+            }
+        }
+
+        //判断是否退订
+        private string IsSubscrib(int BaseChannelId)
+        {
+            string F_IsSubscrib;
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                F_IsSubscrib = db.Queryable<OC_BaseChannel>().SingleOrDefault(t => t.Id == BaseChannelId).F_unsubscribe;
+            }
+            if (F_IsSubscrib != null|| F_IsSubscrib != "")
+                return F_IsSubscrib;//开启退订
+            else return null;
+        }
+
+        //根据通道Id取出单价
+        private decimal GetGroupChannelPrice(string GroupChannelId)
+        {
+            decimal ChannelPrice = 0;
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                ChannelPrice = db.Queryable<OC_GroupChannel>().SingleOrDefault(t => t.F_ID == GroupChannelId).F_ChannelPrice.ObjToDecimal();
+            }
+            return ChannelPrice;
+        }
+
+        //更新余额
+        private bool UpdateBalance (decimal cost,int UserId)
+        {
+            decimal Balance = 0;
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                Models.OC_UserInfo usermodel = db.Queryable<Models.OC_UserInfo>().Single(t => t.F_UserId == UserId);
+                Balance = usermodel.F_Balance;
+
+                if (Balance > cost)//余额充足
+                {
+                    usermodel.F_Balance = Balance - cost;//扣费
+                    db.Update(usermodel);//更新
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        //获取签名
+        private string Getsignature(string F_Id)
+        {
+            string Signature = null;
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                string sql = "select F_Signature from Sys_User where F_Id=@F_Id";
+                Signature = db.SqlQuery<Sys_User>(sql, new { F_Id = F_Id }).Single().F_Signature;
+                return Signature;
+            }
+        }
+    }
+}

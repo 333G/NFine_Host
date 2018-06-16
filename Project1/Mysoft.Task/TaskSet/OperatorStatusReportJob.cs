@@ -1,0 +1,56 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Mysoft.Task.TaskSet
+{
+    [DisallowConcurrentExecution]
+    class OperatorStatusReportJob : IJob
+    {
+        private static string connStr = SysConfig.SqlConnect;
+        public void Execute(IJobExecutionContext context)
+        {
+            try
+            {
+                int listcount = StartJob();
+            //    LogHelper.WriteLog("运营商状态啊同步任务。当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss" + "操作了" + listcount + "条符合条件数据"));
+            }
+            catch (Exception e)
+            {
+                JobExecutionException e1 = new JobExecutionException(e);
+                LogHelper.WriteLog("运营商状态同步任务异常：", e);
+                //1.立即重新执行任务
+                e1.RefireImmediately = true;
+                //2.立即停止所有相关这个任务的触发器
+                e1.UnscheduleAllTriggers = true;
+            }
+        }
+
+
+        int StartJob()
+        {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            List<Sev_SendDateDetail> SendDateStatusReportList = new List<Sev_SendDateDetail>();
+            int count = SendDateStatusReportList.Count();
+
+            stopWatch.Stop();
+            Console.WriteLine("线程============" + stopWatch.ElapsedMilliseconds);
+            return count;
+        }
+
+    }
+
+//==============================================================================数据库操作============================================================================
+
+}

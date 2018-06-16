@@ -1,0 +1,89 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+
+/// <summary>
+/// 审核任务
+/// </summary>
+///<remarks>DisallowConcurrentExecution属性标记任务不可并行，要是上一任务没运行完即使到了运行时间也不会运行</remarks>
+[DisallowConcurrentExecution]
+public class SendSmsJob : IJob
+{
+    private static string connStr = SysConfig.SqlConnect;
+    public void Execute(IJobExecutionContext context)
+    {
+        try
+        {
+            //获取任务执行参数,任务启动时会读取配置文件TaskConfig.xml节点TaskParam的值传递过来、、好像是空值
+            //object objParam = context.JobDetail.JobDataMap.Get("TaskParam");
+
+
+            int listcount = StartJob();
+
+            LogHelper.WriteLog("短信审核测试,当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss" + "操作了" + listCount + "条符合条件数据"));
+        }
+        catch (Exception ex)
+        {
+            JobExecutionException e2 = new JobExecutionException(ex);
+            LogHelper.WriteLog("任务异常 ", ex);
+            //1.立即重新执行任务 
+            e2.RefireImmediately = true;
+            //2 立即停止所有相关这个任务的触发器
+            //e2.UnscheduleAllTriggers=true; 
+        }
+    }
+
+
+    int StartJob()
+    {
+        var stopWatch = new Stopwatch();
+        stopWatch.Start();
+        List<Sev_SendDateDetail> SendList = HttpSendList();
+        int count = SendList.Count();
+        try
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                db.SqlBulkCopy(SendDataList); //批量插入 海量数据插入Sev_SendDateDetail，
+                                              //db.InsertRange();//批量插入数据（备用方法）
+
+                db.SqlBulkReplace(ReadyList); //批量更新 海量数据更新SMC_SendSms（是否为验证码，以及短信内容替换敏感词
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            Console.Read();
+        }
+        stopWatch.Stop();
+        Console.WriteLine("线程============" + stopWatch.ElapsedMilliseconds);
+        return count;
+    }
+
+
+
+    //*************************************************************************数据库操作方法***************************************************************************************
+
+    //获取Http发送方式是发送数据
+    private List<Sev_SendDateDetail> HttpSendList()
+    {
+        List<Sev_SendDateDetail> httpsendlist = new List<Sev_SendDateDetail>();
+        using (SqlSugarClient db = new SqlSugarClient(connStr))
+        {
+            string sql = "select F_Id,Id,F_UserId,F_PhoneCode,F_SmsContent,F_CreatorUserId from Sev_SendDateDetail"
+                   + " where F_DealState=0  and F_ProtocolType=1  ORDER BY F_Level DESC";
+            httpsendlist = db.SqlQuery<Sev_SendDateDetail>(sql);//F_CreatorUserId是用户的F_Id
+        }
+        return httpsendlist;
+    }
+
+}

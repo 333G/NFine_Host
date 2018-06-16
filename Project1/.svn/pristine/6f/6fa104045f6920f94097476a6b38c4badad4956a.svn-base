@@ -1,0 +1,129 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Mysoft.Task.TaskSet
+{
+    /// <summary>
+    /// 测试任务
+    /// </summary>
+    ///<remarks>DisallowConcurrentExecution属性标记任务不可并行，要是上一任务没运行完即使到了运行时间也不会运行</remarks>
+    [DisallowConcurrentExecution]
+    public class SendSmsJob : IJob
+    {
+        private static string connStr = SysConfig.SqlConnect;
+        public void Execute(IJobExecutionContext context)
+        {
+            try
+            {
+                List<SMC_SendSms> sendsms = GetSMCSendSmsList();
+                int listcount = sendsms.Count();
+                LogHelper.WriteLog("短信发送测试,当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss" + "取得" + listcount + "条符合条件数据"));
+            }
+            catch (Exception ex)
+            {
+                JobExecutionException e2 = new JobExecutionException(ex);
+                LogHelper.WriteLog("测试任务异常", ex);
+                //1.立即重新执行任务 
+                e2.RefireImmediately = true;
+                //2 立即停止所有相关这个任务的触发器
+                //e2.UnscheduleAllTriggers=true; 
+            }
+        }
+
+          //取得发送表数据，已审核，未发送
+          private List<SMC_SendSms> GetSMCSendSmsList()
+          {
+              List<SMC_SendSms> list_smc_sendsms = new List<SMC_SendSms>();
+              using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+              {
+                  list_smc_sendsms = db.SqlQuery<SMC_SendSms>("select F_Id,F_MobileList,F_CreatorUserId from SMC_SendSms where F_DealState=1 and F_SendState=0");
+              }
+            if (list_smc_sendsms.Count() > 0)
+            {
+                
+            }
+              return list_smc_sendsms;
+          }
+
+          //线程方式，返回详单的实体，即折短信
+          private List<Sev_SendDateDetail> GetSevSendDateDetailParallel(List<SMC_SendSms> list1)
+          {
+              List<Sev_SendDateDetail> list_sev_sdd = new List<Sev_SendDateDetail>();//返回待发送数据的记录   
+              Parallel.ForEach(list1, item =>
+              {
+                  if (item.F_MobileList != null)
+                  {
+                      Sev_SendDateDetail ssdd = new Sev_SendDateDetail();//生成实体对象
+                      ssdd.F_RootId = "111111";
+                      ssdd.F_UserId = item.F_CreatorUserId;
+                      ssdd.F_SendId = item.F_Id;
+                      string[] mobilelist = item.F_MobileList.Split(',');
+                      for (int i = 0; i < mobilelist.Count(); i++)
+                      {
+                          ssdd.F_PhoneCode = mobilelist[i].Replace("\t", "");
+                          list_sev_sdd.Add(ssdd);
+                      }
+                  }
+              });
+              return list_sev_sdd;
+          }
+
+        //非线程方式，返回详单的实体，拆短信
+        private List<Sev_SendDateDetail> GetSevSendDateDetail(List<SMC_SendSms> list1)
+          {
+              List<Sev_SendDateDetail> list_sev_sdd = new List<Sev_SendDateDetail>();           
+              foreach (var item in list1)
+              {
+                  if (item.F_MobileList != null)
+                  {
+                      Sev_SendDateDetail ssdd = new Sev_SendDateDetail();//生成实体对象
+                      ssdd.F_RootId = "111111";
+                      ssdd.F_UserId = item.F_CreatorUserId;
+                      ssdd.F_SendId = item.F_Id;
+                      string[] mobilelist = item.F_MobileList.Split(',');
+                      for (int i = 0; i < mobilelist.Count(); i++)
+                      {
+                          ssdd.F_PhoneCode = mobilelist[i].Replace("\t", "");
+                          list_sev_sdd.Add(ssdd);
+                      }
+                  }
+              }
+              return list_sev_sdd;
+          }
+
+        //黑白名单处理
+        private string BlackAndWhiteNumber(string number) {
+            return null;
+        }
+
+        //拆分长短信
+        private string SplitLongSmsContent(string content) {
+            return null;
+        }
+
+         //发送短信主程序
+        void StartJob()
+        {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            List < SMC_SendSms > list1 = GetSMCSendSmsList();//取得发送表数据
+            List<Sev_SendDateDetail> listTable = GetSevSendDateDetail(list1);//返回详单的实体,开始拆短信
+        using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                db.SqlBulkCopy(listTable); //批量插入 适合海量数据插入
+            }
+            stopWatch.Stop();
+            Console.WriteLine("线程============"+ stopWatch.ElapsedMilliseconds);
+        }
+    }
+}

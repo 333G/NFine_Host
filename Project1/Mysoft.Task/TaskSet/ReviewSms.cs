@@ -1,0 +1,393 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ToolGood.Words;
+
+namespace Mysoft.Task.TaskSet
+{
+    /// <summary>
+    /// 审核任务
+    /// </summary>
+    ///<remarks>DisallowConcurrentExecution属性标记任务不可并行，要是上一任务没运行完即使到了运行时间也不会运行</remarks>
+    [DisallowConcurrentExecution]
+    public class ReviewSms : IJob
+    {
+        private static string connStr = SysConfig.SqlConnect;
+        public void Execute(IJobExecutionContext context)
+        {
+            try
+            {
+                //获取任务执行参数,任务启动时会读取配置文件TaskConfig.xml节点TaskParam的值传递过来、、好像是空值
+                //object objParam = context.JobDetail.JobDataMap.Get("TaskParam");
+
+                //获取F_Id,F_MobileList，F_CreatorUserId
+                //int listcount = sendsms.Count();
+                int listCount = Checkedlist();
+                OperateIsTime();//修改操作状态，如果到时间就是处理中。
+              //  LogHelper.WriteLog("短信审核任务。当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"+"操作了"+ listCount + "条符合条件数据"));
+            }
+            catch (Exception ex)
+            {
+                JobExecutionException e2 = new JobExecutionException(ex);
+                LogHelper.WriteLog("审核任务异常 ", ex);
+                //1.立即重新执行任务 
+                e2.RefireImmediately = true;
+                //2 立即停止所有相关这个任务的触发器
+                //e2.UnscheduleAllTriggers=true; 
+            }
+        }
+
+        //1、关键字校验
+        private string KeyCheck(string sms_content)
+        {
+            List<Sev_SendDateDetail> list_Sev_SendDateDetail = new List<Sev_SendDateDetail>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                string sql = "select F_Id,F_SensitiveWords from Sev_SendDateDetail";//没有F_SensitiveWords字段在表内
+                list_Sev_SendDateDetail = db.SqlQuery<Sev_SendDateDetail>(sql);
+            }
+            if (list_Sev_SendDateDetail.Count() > 0)
+            {
+                foreach (var model in list_Sev_SendDateDetail)
+                {
+                    string strmodel = model.ToString();
+                    int modelnum = strmodel.Length;
+                    string strstar = "";
+                    for (int i = 0; i < modelnum; i++) {
+                        strstar += "*";
+                    }
+                    sms_content.Replace(strmodel, strstar);
+                }
+            }
+            return sms_content;
+        }
+
+        //2.审核条件检查
+        private int Checkedlist()
+        {
+            List<SMC_SendSms> list = GetSMCSendSmsList();//获取发送列表
+            AddToWhiteList(list);
+            int Count = list.Count();
+            List<SMC_SendSms> baselist = new List<SMC_SendSms>();//新建列表，用来传递需要进一步审核的列表
+            foreach (var item in list)
+            {
+                //判断接收号码数量是否小于需审核的条数
+                if (item.F_MobileCount < ReviewedNum(item.F_CreatorUserId))
+                {
+                    ChangeDealStateSucceed(item.F_Id);//修改审核状态为已审核
+                }
+                else
+                    baselist.Add(item); 
+            }
+            Autoconfirm(baselist);//baselist用于继续审核,自动审核
+            return Count;//返回符合的数目
+        }
+
+
+        //3.自动审核,审核的是短信内容
+        private void Autoconfirm(List<SMC_SendSms> baselist)//得到需要自动审核的SMC_SendSms列表
+        {
+            List<SMC_SendSms> Faliedlist = new List<SMC_SendSms>();//失败列表，即将进行人工审核
+            Parallel.ForEach(baselist, item =>
+           {
+               if (AutoExamineTmpl(item.F_RootId.ObjToInt(), item.F_SmsContent) == false)
+               {
+                   Faliedlist.Add(item);//未通过审核，添加到失败列表
+                }
+               else
+               {
+                   ChangeDealStateSucceed(item.F_Id);//修改审核状态为已审核
+               }
+           });
+            Manualconfirm(Faliedlist);//审核失败的列表，进行人工审核。
+        }
+
+        //4.人工审核，审核内容是人工正则表达式
+        private void Manualconfirm(List<SMC_SendSms> baselist)//获取自动审核未通过的列表;
+        {
+            Parallel.ForEach(baselist, item=>
+            {
+                if (ManualExamineTmpl(item.F_RootId.ObjToInt(), item) == 0)//传入正则表达式，Content,0表示不通过正则
+                {
+                    ChangeDealStateFalied(item.F_Id);//自动，人工审核验证均失败，修改审核状态为待审核（意思是等待管理员手动审核）。不做处理
+                }
+                else if (ManualExamineTmpl(item.F_RootId.ObjToInt(), item) == 1)//1表示符合正则，且动作为通过
+                {
+                    ChangeDealStateSucceed(item.F_Id);//修改审核状态为已审核
+                    
+                }
+                else if (ManualExamineTmpl(item.F_RootId.ObjToInt(), item) == 2)//2表示符合正则，但是动作为不通过
+                {
+                    ChangeDealStateFalied(item.F_Id);//自动，人工审核验证均失败，修改审核状态为待审核
+                    ChangesendStateDone(item.F_Id);//修改发送状态为不发送。(区别与审核失败，不作处理)
+                }
+            });
+        }
+
+        //5.检测是否需要处理（isTime）,发送时间已到，istime改为false
+        private void OperateIsTime()
+        {
+            List<SMC_SendSms> list = GetOperateSmsList();
+            Parallel.ForEach(list, item =>
+            {
+                if (item.F_SendTime < DateTime.Now)
+                    ChangeIsTimerState(item.F_Id);
+            });
+        }
+
+        ////6.黑名单判断,获取可以发送的smslist，返回SendData的List<>.，为发送做最后的准备。
+        //private List<Sev_SendDateDetail> BlackCheckednum(List<SMC_SendSms>sendsmslist)
+        //{
+        //    List<Models.TXL_BlackList> blacklist = GetBlackList();
+        //    List<Sev_SendDateDetail> resultlist = new List<Sev_SendDateDetail>();
+        //    foreach (var item in sendsmslist)
+        //    {
+        //        List<Sev_SendDateDetail> senddatalist = GetSendData(item.F_Id);
+        //        foreach (var data in senddatalist)
+        //        {
+        //            foreach (var num in blacklist)
+        //            {
+        //                if (data.F_PhoneCode == num.Mobile)//如果联系电话在黑名单中，移除行
+        //                {
+        //                    senddatalist.Remove(data);
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //        resultlist.AddRange(senddatalist);//List拼接
+        //    }
+        //    return resultlist;
+        //}
+
+//*************************************************************************审核方法***************************************************************************************
+        //自动免审模板
+        private bool AutoExamineTmpl(int F_RootId,string content)
+        {
+            bool Result = false;
+            List<Models.OC_AutoExamineTmpl> AutoExamineTmplList = GetAutoExamineTmpl(F_RootId);
+            if (AutoExamineTmplList == null)//免审模板是空值，返回false
+                return Result;
+            if (content == null)
+                return Result;
+            foreach (var item in AutoExamineTmplList)
+            {
+                StringCompute stringcompute = new StringCompute();
+                stringcompute.SpeedyCompute(item.F_Analysis, content);    // 快速计算相似度， 不记录比较时间
+                if ( stringcompute.ComputeResult.Rate >= 0.6)//信息与拆分的模板进行比对，若符合一定条件（相似度》60%），通过。(算法问题，匹配率均不高)
+                { Result = true; break; }
+            }
+            return Result;
+        }
+
+        /// <summary>
+        /// 人工免审模板，正则表达式匹配
+        /// 快速验证一个字符串是否符合指定的正则表达式。
+        /// </summary>
+        /// <param name="express">正则表达式的内容。</param>
+        /// <param name="content">需验证的字符串。</param>
+        /// <returns>是否合法的bool值。</returns>
+        private int ManualExamineTmpl(int F_RootId, SMC_SendSms Model)
+        {
+            int Result = 0;//标记量，有4种不同的可能。不过正则，均不发送。过了正则，如果动作为通过，则发送；如果动作为不通过，则不发送，处理状态为已处理，审核状态不通过-2（这里的不通过指的是审核状态为不通过）。
+            List<Models.OC_ManualExamineTmpl> list = GetManualExamineTmpl(F_RootId);
+            if (list == null)//免审模板是空值，返回false
+                return Result;
+            foreach (var item in list)
+            {
+               
+                if (RegexHelper.CheckRegex(item.F_RegexContent, Model.F_SmsContent))//CheckRegex方法：空值或者不符合正则表达式返回false;
+                {
+                    if (item.F_Action == true)//动作。判断是否符合正则
+                    {
+                        ChangeChannelId(Model.F_Id, item.F_ChannelId);
+                        Result = 1;
+                    }
+                    else
+                        Result = 2;
+                }
+            }
+            return Result;
+        }
+        //添加号码到白名单
+        private void AddToWhiteList(List<SMC_SendSms> baselist)
+        {
+            DateTime now = DateTime.Now;
+            foreach (var item in baselist)
+            {
+                DateTime RegisterTime = GetregisterTime(item.F_CreatorUserId);
+                if ((now-RegisterTime).Days< 15 && item.F_MobileCount<10)
+                {
+                    string[] MobileList = item.F_MobileList.Split(',');
+                    SubmitWhitePhone(item.F_CreatorUserId, MobileList);
+                }
+            }
+        }
+//***********************************************************************获取，修改数据***********************************************************************************************
+        //取得发送表数据，未审核(F_DealState=0)，未发送，未处理，发送时间已到，根据优先级排序(大的在前）
+        private List<SMC_SendSms> GetSMCSendSmsList()
+        {
+            List<SMC_SendSms> list_smc_sendsms = new List<SMC_SendSms>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                string sql = "select F_Id,F_MobileList,F_MobileCount,F_IsTimer,F_RootId,F_SendSign,F_CreatorUserId,F_SmsContent from SMC_SendSms"
+                    + " where F_DealState=0 and F_SendState=0 and F_OperateState=0 ORDER BY F_Priority DESC";
+                list_smc_sendsms = db.SqlQuery<SMC_SendSms>(sql);//F_CreatorUserId是用户的F_Id
+            }
+            return list_smc_sendsms;
+        }
+
+        //取得发送表数据，已审核(F_DealState=9)，未发送，未处理
+        private List<SMC_SendSms> GetOperateSmsList()
+        {
+            List<SMC_SendSms> list_smc_operasms = new List<SMC_SendSms>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库连接
+            {
+                string sql = "select F_Id,F_IsTimer from SMC_SendSms"
+                    + " where F_DealState=9 and F_SendState=0 and F_OperateState=0 and F_IsTimer='true'";
+                list_smc_operasms = db.SqlQuery<SMC_SendSms>(sql);//F_CreatorUserId是用户的F_Id
+            }
+            try
+            {
+                return list_smc_operasms;
+            }
+            catch { return list_smc_operasms = null;  }
+        }
+        
+        //获取审核条数
+        private int ReviewedNum(string F_Id)
+        {
+            List<Models.OC_UserInfo> list = new List<Models.OC_UserInfo>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))//开启数据库链接
+            {
+                string sql = "select F_Reviewed from OC_UserInfo where F_UserFid = @F_Id";//获取F_Reviewed
+                list = db.SqlQuery<Models.OC_UserInfo>(sql,new { F_Id=F_Id});
+            }
+            try { return list[0].F_Reviewed.ObjToInt(); }
+            catch { return 0; }
+        }
+
+        //修改审核状态为已审核
+        private void ChangeDealStateSucceed(string F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                db.Update<SMC_SendSms>(new { F_DealState=9},it=>it.F_Id == F_Id);
+            }
+        }
+
+        //修改审核状态为待审核
+        private void ChangeDealStateFalied(string F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                db.Update<SMC_SendSms>(new { F_DealState = -1},it=>it.F_Id==F_Id);
+            }
+        }
+
+        //修改审核状态为审核不通过
+        private void ChangesendStateDone(string F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                db.Update<SMC_SendSms>(new { F_SendState = -2}, it => it.F_Id == F_Id);
+            }
+        }
+
+        //获取用户的自动免审模板
+        private List<Models.OC_AutoExamineTmpl> GetAutoExamineTmpl(int RootId)
+        {
+            List<Models.OC_AutoExamineTmpl> list = new List<Models.OC_AutoExamineTmpl>();
+            try
+            {
+                using (SqlSugarClient db = new SqlSugarClient(connStr))
+                {
+                    string sql = "select F_Analysis from OC_AutoReviewTemplete where F_RootId = @RootId ";
+                    list = db.SqlQuery<Models.OC_AutoExamineTmpl>(sql,new { RootId=RootId});
+                }
+            }
+            catch { list = null;}//避免空值报错
+                return list;
+            }
+
+        //获取用户的人工免审模板
+        private List<Models.OC_ManualExamineTmpl> GetManualExamineTmpl(int RootId)
+        {
+            List<Models.OC_ManualExamineTmpl> list = new List<Models.OC_ManualExamineTmpl>();
+            try
+            {
+                using (SqlSugarClient db = new SqlSugarClient(connStr))
+                {
+                    string sql = "select F_RegexContent,F_Action,F_ChannelId from OC_ManualExamineTmplete where F_RootId = @RootId";
+                    list = db.SqlQuery<Models.OC_ManualExamineTmpl>(sql,new { RootId=RootId});
+                }
+            }
+            catch { list = null; }//避免空值报错
+            return list;
+        }
+        //修改人工免审模板的ChannelId
+        private void ChangeChannelId(string F_Id,string ChannelId)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                db.Update<SMC_SendSms>(new { F_GroupChannelId = ChannelId }, it => it.F_Id == F_Id);
+            }
+        }
+        //把定时发送的标记改为false，表示已经可以发送了
+        private void ChangeIsTimerState(string F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                db.Update<SMC_SendSms>(new { F_IsTimer = false }, it => it.F_Id == F_Id);
+            }
+        }
+
+        //获取用户注册时间
+        private DateTime GetregisterTime(string UserFid)
+        {
+            DateTime registerTime = new DateTime();
+            try
+            {
+                using (SqlSugarClient db = new SqlSugarClient(connStr))
+                {
+                    registerTime = db.Queryable<Models.OC_UserInfo>().Single(t => t.F_Id == UserFid).F_CreatorTime.ObjToDate();
+                }
+                return registerTime;
+            }
+            catch
+            {
+                registerTime = DateTime.Parse("2017-01-01");
+                return registerTime;
+            }
+        }
+        //提交用户白名单
+        private void SubmitWhitePhone(string UserFid, string[] MobileList)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                int Id = db.Queryable<Sys_User>().Single(t => t.F_Id == UserFid).Id;
+                foreach (string Mobile in MobileList)
+                {
+                    if (db.Queryable<Models.OC_BlackList>().SingleOrDefault(t => t.F_Mobile == Mobile) == null)
+                    {
+                        Models.OC_BlackList Model = new Models.OC_BlackList();
+                        Model.F_Mobile = Mobile;
+                        Model.F_Level = 180;
+                        Model.ComeFrom = 2;
+                        Model.Creator  = UserFid;
+                        Model.F_CreatorUserId = Id;
+                        Model.UserId = Id;
+                        Model.F_EnabledMark = true;
+                        Model.F_Sign = false;
+                        Model.F_DeleteMark = false;
+                        db.Insert(Model);
+                    }
+                } 
+            }
+        }
+    }
+}

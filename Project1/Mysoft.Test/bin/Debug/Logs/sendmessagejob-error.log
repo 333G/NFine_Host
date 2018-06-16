@@ -1,0 +1,80 @@
+﻿ERROR 2017-06-19 15:23:41,051 [logerror] 发送信息任务异常
+System.Data.SqlClient.SqlException (0x80131904): 对象名 'dbo.p_Message' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 Mysoft.Utility.DbHelper.ToList[T](String strCon, String strSQL, Object param) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\DbHelper.cs:行号 184
+   在 Mysoft.Utility.SQLHelper.ToList[T](String strSQL, Object param) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\SQLHelper.cs:行号 94
+   在 Mysoft.Utility.SQLHelper.ToList[T](String strSQL) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\SQLHelper.cs:行号 105
+   在 Mysoft.Task.TaskSet.SendMessageJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendMessageJob.cs:行号 26
+ClientConnectionId:e3bc1fd2-015d-4117-81f2-fa66961027e2
+Error Number:208,State:1,Class:16
+ERROR 2017-06-19 15:24:20,265 [logerror] 发送信息任务异常
+System.Data.SqlClient.SqlException (0x80131904): 对象名 'dbo.p_Message' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 Mysoft.Utility.DbHelper.ToList[T](String strCon, String strSQL, Object param) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\DbHelper.cs:行号 184
+   在 Mysoft.Utility.SQLHelper.ToList[T](String strSQL, Object param) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\SQLHelper.cs:行号 94
+   在 Mysoft.Utility.SQLHelper.ToList[T](String strSQL) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\SQLHelper.cs:行号 105
+   在 Mysoft.Task.TaskSet.SendMessageJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendMessageJob.cs:行号 26
+ClientConnectionId:384ca9f0-24fa-4cee-9995-0859e3f6c75b
+Error Number:208,State:1,Class:16
+ERROR 2017-06-19 15:25:31,143 [logerror] 发送信息任务异常
+System.Data.SqlClient.SqlException (0x80131904): 对象名 'dbo.p_Message' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 Mysoft.Utility.DbHelper.ToList[T](String strCon, String strSQL, Object param) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\DbHelper.cs:行号 184
+   在 Mysoft.Utility.SQLHelper.ToList[T](String strSQL, Object param) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\SQLHelper.cs:行号 94
+   在 Mysoft.Utility.SQLHelper.ToList[T](String strSQL) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\SQLHelper.cs:行号 105
+   在 Mysoft.Task.TaskSet.SendMessageJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendMessageJob.cs:行号 26
+ClientConnectionId:f6b893de-1bdc-4117-853b-2092181c6278
+Error Number:208,State:1,Class:16
+ERROR 2017-06-19 15:27:54,929 [logerror] 发送信息任务异常
+System.Data.SqlClient.SqlException (0x80131904): 对象名 'dbo.p_Message' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 Mysoft.Utility.DbHelper.ToList[T](String strCon, String strSQL, Object param) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\DbHelper.cs:行号 184
+   在 Mysoft.Utility.SQLHelper.ToList[T](String strSQL, Object param) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\SQLHelper.cs:行号 94
+   在 Mysoft.Utility.SQLHelper.ToList[T](String strSQL) 位置 E:\17_3_30\Project1\Mysoft.Utility\DB\SQLHelper.cs:行号 105
+   在 Mysoft.Task.TaskSet.SendMessageJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendMessageJob.cs:行号 26
+ClientConnectionId:e2a3f89d-c198-4acc-bb93-6d97bd021d2a
+Error Number:208,State:1,Class:16

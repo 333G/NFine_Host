@@ -1,0 +1,53 @@
+﻿using System;
+using System.Linq;
+using System.Text;
+
+namespace Models
+{
+    public class Sev_SendDateDetail
+    {
+        
+        /// <summary>
+        /// Desc:编号 
+        /// Default:- 
+        /// Nullable:False 
+        /// </summary>
+        public Int64 F_Id {get;set;}
+
+        /// <summary>
+        /// Desc:- 
+        /// Default:- 
+        /// Nullable:True 
+        /// </summary>
+        public string SMC_F_Id {get;set;}
+
+        /// <summary>
+        /// Desc:发送表编号 
+        /// Default:- 
+        /// Nullable:True 
+        /// </summary>
+        public string F_SendId {get;set;}
+
+        /// <summary>
+        /// Desc:用户编号 
+        /// Default:- 
+        /// Nullable:False 
+        /// </summary>
+        public string F_UserId {get;set;}
+
+        /// <summary>
+        /// Desc:祖宗编号 
+        /// Default:- 
+        /// Nullable:True 
+        /// </summary>
+        public int F_RootId {get;set;}
+
+        /// <summary>
+        /// Desc:发送号码 
+        /// Default:- 
+        /// Nullable:False 
+        /// </summary>
+        public string F_PhoneCode {get;set;}
+
+    }
+}

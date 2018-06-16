@@ -1,0 +1,89 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Mysoft.Task.TaskSet
+{
+    /// <summary>
+    /// 测试任务
+    /// </summary>
+    ///<remarks>DisallowConcurrentExecution属性标记任务不可并行，要是上一任务没运行完即使到了运行时间也不会运行</remarks>
+    [DisallowConcurrentExecution]
+    class CashBackJob : IJob
+    {
+        private static string connStr = SysConfig.SqlConnect;
+        public void Execute(IJobExecutionContext cintext)
+        {
+            try
+            {
+                int listcount = StartJob();
+                LogHelper.WriteLog("短信发送测试,当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss" + "操作了" + listcount + "条符合条件数据"));
+            }
+            catch (Exception e)
+            {
+                JobExecutionException e1 = new JobExecutionException(e);
+                LogHelper.WriteLog("任务异常", e);
+                //1.立即重新执行任务
+                e1.RefireImmediately = true;
+                //2.立即停止所有相关这个任务的触发器
+                e1.UnscheduleAllTriggers = true;
+            }
+        }
+
+        private void recharge(List<Sev_SendDateDetail> SendDataList)
+        {
+            Parallel.ForEach(SendDataList, item => {
+                decimal cost = item.F_Price * item.F_LongsmsCount.ObjToDecimal();//计算总费用:单价*短信条数
+                UpdateBalance(cost, item.F_UserId,item.F_Id);//返款和更改返款状态
+            });
+        }
+
+        int StartJob()
+        {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            List<Sev_SendDateDetail> CashBackList = GetCashBackList();
+            recharge(CashBackList);
+            int count = CashBackList.Count();
+
+            stopWatch.Stop();
+            Console.WriteLine("线程============" + stopWatch.ElapsedMilliseconds);
+            return count;
+        }
+ 
+//****************************************************************************修改，获取数据**************************************************************************
+
+        //获取需要返款的详单,发送失败,且没有返款
+        private List<Sev_SendDateDetail> GetCashBackList()
+        {
+            List<Sev_SendDateDetail> CashBackList = new List<Sev_SendDateDetail>();
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                CashBackList = db.GetList<Sev_SendDateDetail>("select SMC_F_Id,F_ChannelId from Sev_SendDateDetail  where F_IsCashBack = 'false' and ( F_Report= 2 or F_Report=5) ");
+            }
+            return CashBackList;
+        }
+
+        //更新余额(返款),更新返款状态
+        private void UpdateBalance(decimal cost, int UserId,long F_Id)
+        {
+            using (SqlSugarClient db = new SqlSugarClient(connStr))
+            {
+                Models.OC_UserInfo usermodel = db.Queryable<Models.OC_UserInfo>().Single(t => t.F_UserId == UserId);
+                usermodel.F_Balance = usermodel.F_Balance + cost;//返款
+                db.Update(usermodel);//更新
+                db.Update<Sev_SendDateDetail>(new { F_IsCashBack = true }, it => it.F_Id == F_Id);//详单状态变成已返款
+            }
+        }
+    }
+}

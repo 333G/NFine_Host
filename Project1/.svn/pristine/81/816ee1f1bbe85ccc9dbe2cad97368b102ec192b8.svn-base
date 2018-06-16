@@ -1,0 +1,45 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ToolGood.Words;
+
+/// <summary>
+/// 审核任务
+/// </summary>
+///<remarks>DisallowConcurrentExecution属性标记任务不可并行，要是上一任务没运行完即使到了运行时间也不会运行</remarks>
+[DisallowConcurrentExecution]
+public class SendSmsJob : IJob
+{
+    private static string connStr = SysConfig.SqlConnect;
+    public void Execute(IJobExecutionContext context)
+    {
+        try
+        {
+            //获取任务执行参数,任务启动时会读取配置文件TaskConfig.xml节点TaskParam的值传递过来、、好像是空值
+            //object objParam = context.JobDetail.JobDataMap.Get("TaskParam");
+
+
+            int listCount = Checkedlist();
+
+            LogHelper.WriteLog("短信审核测试,当前系统时间:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss" + "操作了" + listCount + "条符合条件数据"));
+        }
+        catch (Exception ex)
+        {
+            JobExecutionException e2 = new JobExecutionException(ex);
+            LogHelper.WriteLog("任务异常 ", ex);
+            //1.立即重新执行任务 
+            e2.RefireImmediately = true;
+            //2 立即停止所有相关这个任务的触发器
+            //e2.UnscheduleAllTriggers=true; 
+        }
+    }
+
+
+
+
+}

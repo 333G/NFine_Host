@@ -1,0 +1,43 @@
+﻿using Models;
+using Mysoft.Utility;
+using Quartz;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Mysoft.Task.TaskSet
+{
+    /// <summary>
+    /// 测试任务
+    /// </summary>
+    ///<remarks>DisallowConcurrentExecution属性标记任务不可并行，要是上一任务没运行完即使到了运行时间也不会运行</remarks>
+    [DisallowConcurrentExecution]
+    class CashBackJob
+    {
+        private static string connStr = SysConfig.SqlConnect;
+        public void Execute(IJobExecutionContext cintext)
+        {
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                JobExecutionException e1 = new JobExecutionException(e);
+                LogHelper.WriteLog("任务异常", e);
+                //1.立即重新执行任务
+                e1.RefireImmediately = true;
+                //2.立即停止所有相关这个任务的触发器
+                e1.UnscheduleAllTriggers = true;
+            }
+        }
+
+        //取得表数据
+    }
+}

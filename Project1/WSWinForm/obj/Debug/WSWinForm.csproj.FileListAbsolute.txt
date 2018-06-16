@@ -1,0 +1,9 @@
+E:\17_3_30\Project1\WSWinForm\bin\Debug\WSWinForm.exe.config
+E:\17_3_30\Project1\WSWinForm\bin\Debug\WSWinForm.exe
+E:\17_3_30\Project1\WSWinForm\bin\Debug\WSWinForm.pdb
+E:\17_3_30\Project1\WSWinForm\obj\Debug\WSWinForm.csprojResolveAssemblyReference.cache
+E:\17_3_30\Project1\WSWinForm\obj\Debug\WSWinForm.FrmMain.resources
+E:\17_3_30\Project1\WSWinForm\obj\Debug\WSWinForm.Properties.Resources.resources
+E:\17_3_30\Project1\WSWinForm\obj\Debug\WSWinForm.csproj.GenerateResource.Cache
+E:\17_3_30\Project1\WSWinForm\obj\Debug\WSWinForm.exe
+E:\17_3_30\Project1\WSWinForm\obj\Debug\WSWinForm.pdb

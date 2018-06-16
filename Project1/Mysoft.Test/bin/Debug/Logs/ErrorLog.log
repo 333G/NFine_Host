@@ -1,0 +1,1387 @@
+ERROR 2017-04-26 14:48:25,530 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:d5146050-aa37-41c1-b14c-4a6d5f510850
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 14:52:06,909 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:1c0e739e-e2b7-4fce-ad52-d61b08fb2d76
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 14:56:01,821 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:f85d5480-bbc2-4929-b4b7-4152e9a9e422
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:01:16,307 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:0b31303d-e94c-41eb-a460-7020d8b63623
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:01:16,389 [logerror] 任务异常 
+System.Data.SqlClient.SqlException (0x80131904): '）' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.ReviewSms.ReviewedNum(String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 264
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 80
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 32
+ClientConnectionId:0b31303d-e94c-41eb-a460-7020d8b63623
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:01:48,351 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:22b33bb4-10e6-4941-a316-4530ac758a50
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:02:09,371 [logerror] 任务异常 
+System.Data.SqlClient.SqlException (0x80131904): '）' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.ReviewSms.ReviewedNum(String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 264
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 80
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 32
+ClientConnectionId:22b33bb4-10e6-4941-a316-4530ac758a50
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:03:09,203 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:5ed8527f-635c-4cf3-97ae-e11273af71c6
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:04:49,992 [logerror] 任务异常 
+System.Data.SqlClient.SqlException (0x80131904): '）' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.ReviewSms.ReviewedNum(String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 264
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 80
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 32
+ClientConnectionId:5ed8527f-635c-4cf3-97ae-e11273af71c6
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:06:18,943 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:5a945cc3-d5fc-473f-af3e-4046de4cf49c
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:07:16,183 [logerror] 任务异常 
+System.Data.SqlClient.SqlException (0x80131904): '）' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.ReviewSms.ReviewedNum(String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 264
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 80
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 32
+ClientConnectionId:5a945cc3-d5fc-473f-af3e-4046de4cf49c
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:07:38,145 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:9757e4af-6c1d-4a96-a0a1-684824f9e831
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:09:15,305 [logerror] 任务异常 
+System.InvalidOperationException: 集合已修改；可能无法执行枚举操作。
+   在 System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   在 System.Collections.Generic.List`1.Enumerator.MoveNext()
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 77
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 32
+ERROR 2017-04-26 15:13:47,085 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:5d53c77d-7897-409a-9623-8a1595b2ce76
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:16:15,571 [logerror] 任务异常 
+System.InvalidOperationException: 集合已修改；可能无法执行枚举操作。
+   在 System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   在 System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+   在 System.Collections.Generic.List`1.Enumerator.MoveNext()
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 77
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 32
+ERROR 2017-04-26 15:21:50,460 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:3766f3ef-c6d2-42a4-9ac7-57604f28cca8
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:21:59,327 [logerror] 任务异常 
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 Mysoft.Task.TaskSet.ReviewSms.ReviewedNum(String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 266
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 81
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 32
+ERROR 2017-04-26 15:22:09,427 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:09001a84-e093-4d89-b101-08c79997a647
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:23:32,612 [logerror] 任务异常 
+System.ArgumentOutOfRangeException: 索引超出范围。必须为非负值并小于集合大小。
+参数名: index
+   在 System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 Mysoft.Task.TaskSet.ReviewSms.ReviewedNum(String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 266
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 81
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 32
+ERROR 2017-04-26 15:23:38,873 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:ffab679c-c2a8-4b22-a598-3d44e30e128a
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:31:29,458 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:77ec0da2-ec2a-4c71-b424-b26c21dc8396
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:32:46,544 [logerror] 任务异常 
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringCompute.StringComputeInit(String str1, String str2) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\MatchCheck.cs:行号 72
+   在 ToolGood.Words.StringCompute.SpeedyCompute(String str1, String str2) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\MatchCheck.cs:行号 175
+   在 Mysoft.Task.TaskSet.ReviewSms.AutoExamineTmpl(Int32 F_RootId, String content) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 184
+   在 Mysoft.Task.TaskSet.ReviewSms.<>c__DisplayClass4_0.<Autoconfirm>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 100
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.ReviewSms.Autoconfirm(List`1 baselist) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 98
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 88
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 32
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringCompute.StringComputeInit(String str1, String str2) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\MatchCheck.cs:行号 72
+   在 ToolGood.Words.StringCompute.SpeedyCompute(String str1, String str2) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\MatchCheck.cs:行号 175
+   在 Mysoft.Task.TaskSet.ReviewSms.AutoExamineTmpl(Int32 F_RootId, String content) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 184
+   在 Mysoft.Task.TaskSet.ReviewSms.<>c__DisplayClass4_0.<Autoconfirm>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 100
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-04-26 15:41:37,672 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:57c71d46-f266-4080-afc4-67f314221963
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:43:00,633 [logerror] 任务异常 
+System.Data.SqlClient.SqlException (0x80131904): 关键字 'from' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.ReviewSms.GetOperateSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 240
+   在 Mysoft.Task.TaskSet.ReviewSms.OperateIsTime() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 141
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 33
+ClientConnectionId:57c71d46-f266-4080-afc4-67f314221963
+Error Number:156,State:1,Class:15
+ERROR 2017-04-26 15:43:09,250 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:afabb7cd-78de-43d8-b3a1-8633b43e1e54
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:47:40,921 [logerror] 任务异常 
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringCompute.StringComputeInit(String str1, String str2) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\MatchCheck.cs:行号 72
+   在 ToolGood.Words.StringCompute.SpeedyCompute(String str1, String str2) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\MatchCheck.cs:行号 175
+   在 Mysoft.Task.TaskSet.ReviewSms.AutoExamineTmpl(Int32 F_RootId, String content)
+   在 Mysoft.Task.TaskSet.ReviewSms.<>c__DisplayClass4_0.<Autoconfirm>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.ReviewSms.Autoconfirm(List`1 baselist)
+   在 Mysoft.Task.TaskSet.ReviewSms.Checkedlist()
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context)
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringCompute.StringComputeInit(String str1, String str2) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\MatchCheck.cs:行号 72
+   在 ToolGood.Words.StringCompute.SpeedyCompute(String str1, String str2) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\MatchCheck.cs:行号 175
+   在 Mysoft.Task.TaskSet.ReviewSms.AutoExamineTmpl(Int32 F_RootId, String content)
+   在 Mysoft.Task.TaskSet.ReviewSms.<>c__DisplayClass4_0.<Autoconfirm>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-04-26 15:47:51,399 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:c8689cc4-1625-45c5-b7c7-7eb33944f311
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:51:06,391 [logerror] 任务异常 
+System.Data.SqlClient.SqlException (0x80131904): 关键字 'from' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.ReviewSms.GetOperateSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 243
+   在 Mysoft.Task.TaskSet.ReviewSms.OperateIsTime() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 142
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 33
+ClientConnectionId:c8689cc4-1625-45c5-b7c7-7eb33944f311
+Error Number:156,State:1,Class:15
+ERROR 2017-04-26 15:56:19,763 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:e0a6fe93-53d0-4780-b5c9-4841871dd198
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 15:56:53,611 [logerror] 任务异常 
+System.Data.SqlClient.SqlException (0x80131904): 关键字 'from' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.ReviewSms.GetOperateSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 243
+   在 Mysoft.Task.TaskSet.ReviewSms.OperateIsTime() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 142
+   在 Mysoft.Task.TaskSet.ReviewSms.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\ReviewSms.cs:行号 33
+ClientConnectionId:e0a6fe93-53d0-4780-b5c9-4841871dd198
+Error Number:156,State:1,Class:15
+ERROR 2017-04-26 15:57:31,472 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:7ab2b19a-c369-423d-a1af-81ac91526626
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 16:00:32,224 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:e391143f-5820-4e90-be9b-4a4ac3e2df0d
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 16:02:12,437 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:73e3bd05-1834-4d14-93f7-ada2a3f369a4
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 16:02:43,402 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:b8682331-2505-49c1-9088-c9de9853990b
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 16:26:14,487 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 204
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:14455651-a858-4fa6-b4c0-40bff5f9d385
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 16:55:26,977 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): '，' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList()
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob()
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context)
+ClientConnectionId:32840fac-6eac-4965-8e7c-dca7fec44cec
+Error Number:102,State:1,Class:15
+ERROR 2017-04-26 16:57:58,091 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): 列名 'F_OperateStete' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList()
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob()
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context)
+ClientConnectionId:e2c9d8d7-910d-4af7-8e9d-abd36aae1734
+Error Number:207,State:1,Class:16
+ERROR 2017-04-26 16:58:45,306 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SendSmsJob.DirtyWordRemove(List`1 contentlist) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 161
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #1) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #2) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #3) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #4) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #5) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #6) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-04-26 17:00:28,788 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SendSmsJob.DirtyWordRemove(List`1 contentlist) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 161
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #1) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #2) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #3) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #4) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #5) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #6) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-04-26 17:03:25,066 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SendSmsJob.DirtyWordRemove(List`1 contentlist) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 161
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 176
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #1) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #2) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #3) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #4) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #5) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #6) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 166
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-04-26 17:05:20,316 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SendSmsJob.DirtyWordRemove(List`1 contentlist)
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob()
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context)
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #1) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #2) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #3) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #4) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #5) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #6) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 ToolGood.Words.StringSearch.Replace(String text, Char replaceChar) 位置 E:\17_3_30\ToolGood.Words-master\ToolGood.Words\StringSearch.cs:行号 87
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass8_0.<DirtyWordRemove>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-04-26 17:06:20,526 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Mysoft.Task.TaskSet.SendSmsJob.SplitLongSmsContent(String Content, String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 140
+   在 Mysoft.Task.TaskSet.SendSmsJob.<StartJob>b__9_0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 181
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 179
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Mysoft.Task.TaskSet.SendSmsJob.SplitLongSmsContent(String Content, String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 140
+   在 Mysoft.Task.TaskSet.SendSmsJob.<StartJob>b__9_0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 181
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-05-04 10:31:56,227 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): 关键字 'NULL' 附近有语法错误。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   在 SqlSugar.SqlHelper.ExecuteCommand(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlBulkCopy[T](IEnumerable`1 entities)
+   在 SqlSugar.SqlSugarClient.SqlBulkCopy[T](List`1 entities)
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 200
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:651090e6-1218-48ac-958b-0cb1736158bf
+Error Number:156,State:1,Class:15
+ERROR 2017-05-04 16:09:23,452 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Mysoft.Task.TaskSet.SendSmsJob.SplitLongSmsContent(String Content, String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 130
+   在 Mysoft.Task.TaskSet.SendSmsJob.<StartJob>b__8_0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 174
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 172
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Mysoft.Task.TaskSet.SendSmsJob.SplitLongSmsContent(String Content, String F_Id) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 130
+   在 Mysoft.Task.TaskSet.SendSmsJob.<StartJob>b__8_0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 174
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-05-04 16:15:41,887 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass4_0.<BlackCheckednumParallel>b__0(Sev_SendDateDetail item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 109
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SendSmsJob.BlackCheckednumParallel(List`1 senddatalist) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 105
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSevSendDateDetailParallel(List`1 list1) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 68
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 175
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass4_0.<BlackCheckednumParallel>b__0(Sev_SendDateDetail item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 109
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+---> (内部异常 #1) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Mysoft.Task.TaskSet.SendSmsJob.<>c__DisplayClass4_0.<BlackCheckednumParallel>b__0(Sev_SendDateDetail item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 109
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-05-04 16:23:50,465 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): 列名 'F_GroupChannel' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 210
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 168
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:c2393174-3f11-4918-9eac-b241eb0392ab
+Error Number:207,State:1,Class:16
+ERROR 2017-05-04 16:24:15,249 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): 列名 'F_GroupChannel' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 210
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 168
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:52497680-48e5-4948-ad9f-2788a43b7940
+Error Number:207,State:1,Class:16
+ERROR 2017-05-04 16:25:26,371 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): 列名 'F_GroupChannel' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 210
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 168
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:142fa75d-8665-4796-86a7-fbbb1f7ce4c5
+Error Number:207,State:1,Class:16
+ERROR 2017-05-04 16:25:54,004 [logerror] 任务异常
+System.Data.SqlClient.SqlException (0x80131904): 列名 'F_GroupChannel' 无效。
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader()
+   在 SqlSugar.SqlHelper.GetReader(String sql, SqlParameter[] pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, List`1 pars)
+   在 SqlSugar.SqlSugarClient.SqlQuery[T](String sql, Object whereObj)
+   在 Mysoft.Task.TaskSet.SendSmsJob.GetSMCSendSmsList() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 210
+   在 Mysoft.Task.TaskSet.SendSmsJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 168
+   在 Mysoft.Task.TaskSet.SendSmsJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SendSmsJob.cs:行号 29
+ClientConnectionId:a4f90c6d-0918-484b-afa6-f519ef1b479c
+Error Number:207,State:1,Class:16
+ERROR 2017-06-22 00:07:14,310 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.<>c__DisplayClass2_0.<GetSevSendDateDetailParallel>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.GetSevSendDateDetailParallel(List`1 SendList)
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.StartJob()
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.Execute(IJobExecutionContext context)
+---> (内部异常 #0) System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.<>c__DisplayClass2_0.<GetSevSendDateDetailParallel>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-06-22 00:18:50,441 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.<>c__DisplayClass2_0.<GetSevSendDateDetailParallel>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.GetSevSendDateDetailParallel(List`1 SendList)
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.StartJob()
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.Execute(IJobExecutionContext context)
+---> (内部异常 #0) System.IndexOutOfRangeException: 索引超出了数组界限。
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.<>c__DisplayClass2_0.<GetSevSendDateDetailParallel>b__0(SMC_SendSms item)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
+ERROR 2017-07-05 18:29:42,005 [logerror] 任务异常
+System.AggregateException: 发生一个或多个错误。 ---> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.<DirtyWordRemove>b__9_0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SplitPhoneJob.cs:行号 702
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 System.Threading.Tasks.Task.Wait()
+   在 System.Threading.Tasks.Parallel.ForWorker[TLocal](Int32 fromInclusive, Int32 toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IList`1 list, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   在 System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.DirtyWordRemove(List`1 SendList) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SplitPhoneJob.cs:行号 699
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.StartJob() 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SplitPhoneJob.cs:行号 733
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.Execute(IJobExecutionContext context) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SplitPhoneJob.cs:行号 42
+---> (内部异常 #0) System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Mysoft.Task.TaskSet.SplitPhoneJob.<DirtyWordRemove>b__9_0(SMC_SendSms item) 位置 E:\17_3_30\Project1\Mysoft.Task\TaskSet\SplitPhoneJob.cs:行号 702
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass31_0`2.<ForEachWorker>b__0(Int32 i)
+   在 System.Threading.Tasks.Parallel.<>c__DisplayClass17_0`1.<ForWorker>b__1()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.InnerInvokeWithArg(Task childTask)
+   在 System.Threading.Tasks.Task.<>c__DisplayClass176_0.<ExecuteSelfReplicating>b__0(Object )<---
+
